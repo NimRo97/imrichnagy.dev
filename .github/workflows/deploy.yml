@@ -1,0 +1,23 @@
+name: Deploy Hugo Site to Atlas
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.ATLAS_DEPLOY_KEY }}
+
+      - name: Deploy to Atlas via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.ATLAS_USER }}@${{ secrets.ATLAS_HOST }} ${{ secrets.ATLAS_DEPLOY_SCRIPT }}
