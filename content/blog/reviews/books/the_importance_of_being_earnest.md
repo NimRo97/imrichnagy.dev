@@ -6,4 +6,4 @@ title = 'The Importance of Being Earnest'
 
 ## 5*
 
-This was a great book
+This was a great book. However, this page is just a test of my site setup :(
